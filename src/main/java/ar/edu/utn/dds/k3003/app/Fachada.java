@@ -55,13 +55,18 @@ public class Fachada implements FachadaHeladeras {
     @Override public void retirar(RetiroDTO retiro) throws NoSuchElementException{
         Heladera heladera=heladerasRepository.findById(retiro.getHeladeraId());
         ViandaDTO viandaDTO=this.fachadaViandas.buscarXQR(retiro.getQrVianda());
-        heladera.retirarVianda(retiro.getQrVianda());
+        try {
+            heladera.retirarVianda(retiro.getQrVianda());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         fachadaViandas.modificarEstado(viandaDTO.getCodigoQR(),EstadoViandaEnum.RETIRADA);
 
     }
 
     @Override public void temperatura(TemperaturaDTO temperaturaDTO){
      Temperatura temperatura=new Temperatura(temperaturaDTO.getTemperatura(),temperaturaDTO.getHeladeraId(), LocalDateTime.now());
+     Heladera heladera=this.heladerasRepository.findById(temperatura.getHeladeraId());
      temperatura=this.temperaturaRepository.save(temperatura);
     }
 
@@ -81,4 +86,7 @@ public class Fachada implements FachadaHeladeras {
      this.fachadaViandas=viandas;
     }
 
+    public HeladeraDTO obtenerHeladera(Integer id){
+      return heladeraMapper.map(heladerasRepository.findById(id));
+    }
 }

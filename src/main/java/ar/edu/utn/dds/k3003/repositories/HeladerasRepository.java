@@ -1,9 +1,11 @@
 package ar.edu.utn.dds.k3003.repositories;
 import ar.edu.utn.dds.k3003.model.Heladera;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class HeladerasRepository {
 
+        private static AtomicInteger seqId = new AtomicInteger();
         private final Collection<Heladera> heladeras;
 
         public HeladerasRepository() {
@@ -11,7 +13,10 @@ public class HeladerasRepository {
         }
 
         public Heladera save(Heladera heladera) {
-            this.heladeras.add(heladera);
+            if (Objects.isNull(heladera.getId())) {
+                heladera.setId(seqId.getAndIncrement());
+                this.heladeras.add(heladera);
+            }
             return heladera;
         }
 

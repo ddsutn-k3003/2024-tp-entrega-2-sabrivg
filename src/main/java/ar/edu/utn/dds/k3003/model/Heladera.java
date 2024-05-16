@@ -4,6 +4,8 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 @Data
 public class Heladera {
 
@@ -37,8 +39,12 @@ public class Heladera {
         this.cantidadAperturas++;
     }
 
-    public void retirarVianda(String qrVianda){
-        this.viandas.remove(qrVianda);
+    public void retirarVianda(String qrVianda) throws Exception {
         this.cantidadAperturas++;
+        if(!viandas.contains(qrVianda)) {
+            throw new Exception("No existe la vianda en la heladera ");
+        }
+        this.viandas.remove(qrVianda);
+
     }
 }

@@ -40,16 +40,16 @@ public class HeladerasTest {
     }
  @Test
  void testAgregar() {
-     instancia.agregar(new HeladeraDTO(12, "Una Heladera"));
-     instancia.agregar(new HeladeraDTO(34, "Una Heladera"));
+     instancia.agregar(new HeladeraDTO(12, "Una Heladera",0));
+     instancia.agregar(new HeladeraDTO(34, "Una Heladera",0));
 
      assertEquals(12,repo.findById(12).getId(),"La heladera no se guardo correctamente");
  }
 
 @Test
 void testDepositar() {
-    instancia.agregar(new HeladeraDTO(1, "Una Heladera"));
-    instancia.agregar(new HeladeraDTO(2, "Una Heladera"));
+    instancia.agregar(new HeladeraDTO(1, "Una Heladera",0));
+    instancia.agregar(new HeladeraDTO(2, "Una Heladera",0));
 
     when(fachadaViandas.buscarXQR("22")).thenReturn(new ViandaDTO("22", LocalDateTime.now(), EstadoViandaEnum.PREPARADA, 20L, 2));
     when(fachadaViandas.buscarXQR("33")).thenReturn(new ViandaDTO("33", LocalDateTime.now(), EstadoViandaEnum.PREPARADA, 34L, 1));
@@ -72,8 +72,8 @@ void testDepositar() {
 
 @Test
 void testRetirarVianda() {
-    instancia.agregar(new HeladeraDTO(1, "Una Heladera"));
-    instancia.agregar(new HeladeraDTO(2, "Una Heladera"));
+    instancia.agregar(new HeladeraDTO(1, "Una Heladera",0));
+    instancia.agregar(new HeladeraDTO(2, "Una Heladera",0));
 
     when(fachadaViandas.buscarXQR("22")).thenReturn(new ViandaDTO("22", LocalDateTime.now(), EstadoViandaEnum.PREPARADA, 20L, 2));
     when(fachadaViandas.buscarXQR("33")).thenReturn(new ViandaDTO("33", LocalDateTime.now(), EstadoViandaEnum.PREPARADA, 34L, 1));

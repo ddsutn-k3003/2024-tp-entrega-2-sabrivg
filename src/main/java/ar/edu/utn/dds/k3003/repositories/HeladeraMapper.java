@@ -5,7 +5,7 @@ import ar.edu.utn.dds.k3003.model.Heladera;
 
 public class HeladeraMapper {
     public HeladeraDTO map(Heladera heladera){
-        HeladeraDTO heladeraDTO = new HeladeraDTO(heladera.getId(),heladera.getNombre());
+        HeladeraDTO heladeraDTO = new HeladeraDTO(heladera.getId(),heladera.getNombre(),heladera.getViandas().size());
         heladeraDTO.setId(heladera.getId());
         return heladeraDTO;
     }
