@@ -15,8 +15,8 @@ public class HeladerasRepository {
         public Heladera save(Heladera heladera) {
             if (Objects.isNull(heladera.getId())) {
                 heladera.setId(seqId.getAndIncrement());
-                this.heladeras.add(heladera);
             }
+            this.heladeras.add(heladera);
             return heladera;
         }
 

@@ -16,8 +16,8 @@ public class TemperaturaRepository {
     public Temperatura save(Temperatura temperatura) {
         if (Objects.isNull(temperatura.getId())) {
             temperatura.setId(seqId.getAndIncrement());
-            this.temperaturas.add(temperatura);
         }
+        this.temperaturas.add(temperatura);
         return temperatura;
     }
 
