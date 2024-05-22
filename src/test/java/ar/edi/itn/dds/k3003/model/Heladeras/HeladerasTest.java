@@ -98,6 +98,8 @@ void obtenerTemperatura(){
     TemperaturaDTO tempDto1 = new TemperaturaDTO(22,1, LocalDateTime.now());
     TemperaturaDTO tempDto2 = new TemperaturaDTO(24,1, LocalDateTime.now());
 
+    instancia.agregar(new HeladeraDTO(1,"Juana",0));
+
     instancia.temperatura(tempDto1);
     instancia.temperatura(tempDto2);
     assertEquals(tempDto1.getTemperatura(),repoT.findById(1).get(0).getTemperatura());
